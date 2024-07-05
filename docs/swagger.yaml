@@ -1,0 +1,18 @@
+info:
+  contact: {}
+paths:
+  /hello-world:
+    get:
+      consumes:
+      - application/json
+      description: Get Hello World Message
+      operationId: main-handlers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message":"Hello World", "date" : "time.Time'
+          schema:
+            additionalProperties: true
+            type: object
+swagger: "2.0"

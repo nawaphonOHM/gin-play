@@ -1,0 +1,29 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/hello-world": {
+            "get": {
+                "description": "Get Hello World Message",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "operationId": "main-handlers",
+                "responses": {
+                    "200": {
+                        "description": "message\":\"Hello World\", \"date\" : \"time.Time",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
