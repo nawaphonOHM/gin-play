@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gin-play/handlers/cache_test"
 	"gin-play/handlers/hello_world"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -12,6 +13,8 @@ func main() {
 	ginDefault := gin.Default()
 
 	helloWorldHandler := hello_world.NewHelloWorldHandler()
+
+	cacheTestHandler := cache_test.NewCacheTestImplementation()
 
 	ginDefault.Group("/")
 	{
