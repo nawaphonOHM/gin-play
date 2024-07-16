@@ -3,6 +3,9 @@ package main
 import (
 	"gin-play/handlers/hello_world"
 	"github.com/gin-gonic/gin"
+	"log"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -15,8 +18,17 @@ func main() {
 		ginDefault.GET("/hello-world", helloWorldHandler.MainHandler)
 	}
 
-	err := ginDefault.Run(":8080")
-	if err != nil {
-		panic("Unable to start server")
+	if port, isSet := os.LookupEnv("PORT"); isSet {
+		err := ginDefault.Run(strings.Join([]string{":", port}, ""))
+		if err != nil {
+			panic("Unable to start server")
+		}
+
+	} else {
+		log.Println("Port hasn't been set; Use default PORT = 8080")
+		err := ginDefault.Run(strings.Join([]string{":", "8080"}, ""))
+		if err != nil {
+			panic("Unable to start server")
+		}
 	}
 }
