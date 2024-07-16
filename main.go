@@ -1,14 +1,14 @@
 package main
 
 import (
-	"gin-play/handlers"
+	"gin-play/handlers/hello_world"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	ginDefault := gin.Default()
 
-	helloWorldHandler := handlers.NewHelloWorldHandler()
+	helloWorldHandler := hello_world.NewHelloWorldHandler()
 
 	ginDefault.Group("/")
 	{
