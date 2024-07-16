@@ -4,17 +4,34 @@ import (
 	"gin-play/handlers/cache_test"
 	"gin-play/handlers/hello_world"
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 	"log"
 	"os"
 	"strings"
 )
 
 func main() {
+
+	redisConfig := &redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	}
+
+	if redisPassword, has := os.LookupEnv("REDIS_PASSWORD"); has {
+		redisConfig.Password = redisPassword
+	}
+
+	if redisHost, has := os.LookupEnv("REDIS_URL"); has {
+		redisConfig.Addr = redisHost
+	}
+
+	redisClient := redis.NewClient(redisConfig)
+
 	ginDefault := gin.Default()
 
 	helloWorldHandler := hello_world.NewHelloWorldHandler()
-
-	cacheTestHandler := cache_test.NewCacheTestImplementation()
+	cacheTestHandler := cache_test.NewCacheTestHandler(redisClient)
 
 	ginDefault.Group("/")
 	{
