@@ -16,6 +16,6 @@ func (c *CacheTestImplementation) Set(key string, value string) (bool, error) {
 	panic("implement me")
 }
 
-func NewCacheTestImplementation(cache *redis.Client) CacheTest {
+func NewCacheTestHandler(cache *redis.Client) CacheTest {
 	return &CacheTestImplementation{cache: cache}
 }
