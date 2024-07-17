@@ -4,6 +4,8 @@ import (
 	"context"
 	"github.com/redis/go-redis/v9"
 	"log"
+	"os"
+	"time"
 )
 
 type CacheTestServiceImplementation struct {
@@ -11,8 +13,15 @@ type CacheTestServiceImplementation struct {
 }
 
 func (s *CacheTestServiceImplementation) Set(key string, value string) {
-	//TODO implement me
-	panic("implement me")
+	timeStr, _ := os.LookupEnv("REDIS_CACHE_EXPIRE")
+
+	timeDuration, err := time.ParseDuration(timeStr)
+	if err != nil {
+		log.Println("Unable to parse REDIS_CACHE_EXPIRE set no expire time")
+		timeDuration = 0
+	}
+
+	s.cache.Set(context.Background(), key, value, timeDuration)
 }
 
 func (s *CacheTestServiceImplementation) Get(key string) string {
