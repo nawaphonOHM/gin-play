@@ -7,7 +7,7 @@ import (
 )
 
 type CacheTestHandlerImplementation struct {
-	service cache_test.CacheTestService
+	service service_cache_test.CacheTestService
 }
 
 // Get @Summary Get value from cache
@@ -30,6 +30,6 @@ func (h *CacheTestHandlerImplementation) Set(c *gin.Context) {
 	panic("implement me")
 }
 
-func NewCacheTestHandler(service cache_test.CacheTestService) CacheTestHandler {
+func NewCacheTestHandler(service service_cache_test.CacheTestService) CacheTestHandler {
 	return &CacheTestHandlerImplementation{service: service}
 }
