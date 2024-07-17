@@ -25,6 +25,15 @@ func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
 	})
 }
 
+// Set @Summary Set value in cache
+// @Description Set value in cache with key
+// @Tags CacheTestHandler
+// @Accept  json
+// @Produce  json
+// @Param   key     path    string     true        "Key"
+// @Param   value   path    string     true        "Value"
+// @Success 200 {object} map[string]interface{} "message":"Cache set successfully"
+// @Router /cache/set/{key}/{value} [post]
 func (h *CacheTestHandlerImplementation) Set(c *gin.Context) {
 	body := &SaveCache{}
 
