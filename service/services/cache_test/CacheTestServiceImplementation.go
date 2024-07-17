@@ -1,4 +1,4 @@
-package cache_test
+package service_cache_test
 
 import (
 	"context"
