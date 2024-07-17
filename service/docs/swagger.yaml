@@ -1,6 +1,27 @@
 info:
   contact: {}
 paths:
+  /cache/{key}:
+    get:
+      consumes:
+      - application/json
+      description: Get value from cache by key
+      parameters:
+      - description: Key
+        in: path
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: value":"string
+          schema:
+            additionalProperties: true
+            type: object
+      tags:
+      - CacheTestHandler
   /hello-world:
     get:
       consumes:

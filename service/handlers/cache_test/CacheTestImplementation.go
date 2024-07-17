@@ -12,6 +12,14 @@ type CacheTestHandlerImplementation struct {
 	cache *redis.Client
 }
 
+// Get @Summary Get value from cache
+// @Description Get value from cache by key
+// @Tags CacheTestHandler
+// @Accept  json
+// @Produce  json
+// @Param   key     path    string     true        "Key"
+// @Success 200 {object} map[string]interface{} "value":"string"
+// @Router /cache/{key} [get]
 func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
 	key := c.Param("key")
 	log.Println("Get key:", key)
