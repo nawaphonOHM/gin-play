@@ -1,8 +1,6 @@
 services:
   redis:
     image: redis
-    ports:
-      - "1001:6379"
     env_file:
       - ./in-memory-cache/config.env
     networks:
