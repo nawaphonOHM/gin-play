@@ -3,12 +3,10 @@ package cache_test
 import (
 	"gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
-	"github.com/redis/go-redis/v9"
 	"net/http"
 )
 
 type CacheTestHandlerImplementation struct {
-	cache   *redis.Client
 	service cache_test.CacheTestService
 }
 
@@ -32,6 +30,6 @@ func (h *CacheTestHandlerImplementation) Set(c *gin.Context) {
 	panic("implement me")
 }
 
-func NewCacheTestHandler(cache *redis.Client) CacheTestHandler {
-	return &CacheTestHandlerImplementation{cache: cache}
+func NewCacheTestHandler(service cache_test.CacheTestService) CacheTestHandler {
+	return &CacheTestHandlerImplementation{service: service}
 }
