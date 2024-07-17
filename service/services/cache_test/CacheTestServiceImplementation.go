@@ -10,6 +10,11 @@ type CacheTestServiceImplementation struct {
 	cache *redis.Client
 }
 
+func (s *CacheTestServiceImplementation) Set(key string, value string) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (s *CacheTestServiceImplementation) Get(key string) string {
 	log.Println("Get key:", key)
 
