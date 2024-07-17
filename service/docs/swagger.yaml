@@ -1,6 +1,36 @@
+definitions:
+  handler_cache_test.SaveCache:
+    properties:
+      key:
+        type: string
+      value:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
+  /cache/hello-world:
+    post:
+      consumes:
+      - application/json
+      description: Set value in cache with key
+      parameters:
+      - description: KeyValue
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler_cache_test.SaveCache'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: message":"Cache set successfully
+          schema:
+            additionalProperties: true
+            type: object
+      tags:
+      - CacheTestHandler
   /cache/hello-world/{key}:
     get:
       consumes:
@@ -17,32 +47,6 @@ paths:
       responses:
         "200":
           description: value":"string
-          schema:
-            additionalProperties: true
-            type: object
-      tags:
-      - CacheTestHandler
-  /cache/set/{key}/{value}:
-    post:
-      consumes:
-      - application/json
-      description: Set value in cache with key
-      parameters:
-      - description: Key
-        in: path
-        name: key
-        required: true
-        type: string
-      - description: Value
-        in: path
-        name: value
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: message":"Cache set successfully
           schema:
             additionalProperties: true
             type: object

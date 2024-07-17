@@ -15,6 +15,40 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/cache/hello-world": {
+            "post": {
+                "description": "Set value in cache with key",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CacheTestHandler"
+                ],
+                "parameters": [
+                    {
+                        "description": "KeyValue",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler_cache_test.SaveCache"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "message\":\"Cache set successfully",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/cache/hello-world/{key}": {
             "get": {
                 "description": "Get value from cache by key",
@@ -47,45 +81,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/cache/set/{key}/{value}": {
-            "post": {
-                "description": "Set value in cache with key",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "CacheTestHandler"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Key",
-                        "name": "key",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Value",
-                        "name": "value",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "message\":\"Cache set successfully",
-                        "schema": {
-                            "type": "object",
-                            "additionalProperties": true
-                        }
-                    }
-                }
-            }
-        },
         "/hello-world": {
             "get": {
                 "description": "Get Hello World Message",
@@ -104,6 +99,19 @@ const docTemplate = `{
                             "additionalProperties": true
                         }
                     }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler_cache_test.SaveCache": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
                 }
             }
         }
