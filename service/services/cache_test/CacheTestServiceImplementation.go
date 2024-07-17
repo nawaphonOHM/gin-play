@@ -1,14 +1,25 @@
 package cache_test
 
-import "github.com/redis/go-redis/v9"
+import (
+	"context"
+	"github.com/redis/go-redis/v9"
+	"log"
+)
 
 type CacheTestServiceImplementation struct {
 	cache *redis.Client
 }
 
 func (s *CacheTestServiceImplementation) Get(key string) string {
-	//TODO implement me
-	panic("implement me")
+	log.Println("Get key:", key)
+
+	result, err := s.cache.Get(context.Background(), key).Result()
+	if err != nil {
+		log.Println("Get err:", err)
+		result = ""
+	}
+
+	return result
 }
 
 func NewCacheTestServiceImplementation(cache *redis.Client) CacheTestService {
