@@ -1,4 +1,4 @@
-package database_test
+package handler_database_test
 
 import "github.com/gin-gonic/gin"
 
