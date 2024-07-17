@@ -7,6 +7,6 @@ services:
       - ./in-memory-cache/config.env
 
   server:
-    image: nawaphon2539/golang/gin-play
+    image: nawaphon2539/golang:gin-play
     ports:
       - "1002:8080"
