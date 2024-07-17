@@ -19,7 +19,7 @@ type CacheTestHandlerImplementation struct {
 // @Produce  json
 // @Param   key     path    string     true        "Key"
 // @Success 200 {object} map[string]interface{} "value":"string"
-// @Router /cache/{key} [get]
+// @Router /cache/hello-world/{key} [get]
 func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
 	key := c.Param("key")
 	log.Println("Get key:", key)

@@ -4,7 +4,7 @@
         "contact": {}
     },
     "paths": {
-        "/cache/{key}": {
+        "/cache/hello-world/{key}": {
             "get": {
                 "description": "Get value from cache by key",
                 "consumes": [

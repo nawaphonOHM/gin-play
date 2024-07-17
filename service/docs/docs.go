@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/cache/{key}": {
+        "/cache/hello-world/{key}": {
             "get": {
                 "description": "Get value from cache by key",
                 "consumes": [
