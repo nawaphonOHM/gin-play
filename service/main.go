@@ -33,15 +33,15 @@ func main() {
 	helloWorldHandler := hello_world.NewHelloWorldHandler()
 	cacheTestHandler := cache_test.NewCacheTestHandler(redisClient)
 
-	ginDefault.Group("/")
+	root := ginDefault.Group("/")
 	{
-		ginDefault.GET("/hello-world", helloWorldHandler.MainHandler)
+		root.GET("/hello-world", helloWorldHandler.MainHandler)
 	}
 
-	ginDefault.Group("/cache")
+	cache := ginDefault.Group("/cache")
 	{
-		ginDefault.GET("/hello-world/:key", cacheTestHandler.Get)
-		ginDefault.POST("/hello-world", cacheTestHandler.Set)
+		cache.GET("/hello-world/:key", cacheTestHandler.Get)
+		cache.POST("/hello-world", cacheTestHandler.Set)
 	}
 
 	if port, isSet := os.LookupEnv("PORT"); isSet {
