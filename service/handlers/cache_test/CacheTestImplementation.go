@@ -26,8 +26,15 @@ func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
 }
 
 func (h *CacheTestHandlerImplementation) Set(c *gin.Context) {
-	//TODO implement me
-	panic("implement me")
+	body := &SaveCache{}
+
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	h.service.Set(body.Key, body.Value)
+	c.JSON(http.StatusOK, gin.H{"message": "Cache set successfully"})
 }
 
 func NewCacheTestHandler(service service_cache_test.CacheTestService) CacheTestHandler {
