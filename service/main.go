@@ -3,6 +3,7 @@ package main
 import (
 	"gin-play/handlers/cache_test"
 	"gin-play/handlers/hello_world"
+	service_cache_test "gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"log"
@@ -30,8 +31,10 @@ func main() {
 
 	ginDefault := gin.Default()
 
-	helloWorldHandler := hello_world.NewHelloWorldHandler()
-	cacheTestHandler := cache_test.NewCacheTestHandler(redisClient)
+	cacheTestService := service_cache_test.NewCacheTestServiceImplementation(redisClient)
+
+	helloWorldHandler := handler_hello_world.NewHelloWorldHandler()
+	cacheTestHandler := handler_cache_test.NewCacheTestHandler(cacheTestService)
 
 	root := ginDefault.Group("/")
 	{
