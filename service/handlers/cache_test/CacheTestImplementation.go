@@ -1,15 +1,15 @@
 package cache_test
 
 import (
-	"context"
+	"gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
-	"log"
 	"net/http"
 )
 
 type CacheTestHandlerImplementation struct {
-	cache *redis.Client
+	cache   *redis.Client
+	service cache_test.CacheTestService
 }
 
 // Get @Summary Get value from cache
@@ -21,17 +21,9 @@ type CacheTestHandlerImplementation struct {
 // @Success 200 {object} map[string]interface{} "value":"string"
 // @Router /cache/hello-world/{key} [get]
 func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
-	key := c.Param("key")
-	log.Println("Get key:", key)
-
-	result, err := h.cache.Get(context.Background(), key).Result()
-	if err != nil {
-		result = ""
-		log.Println("Get err:", err)
-	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"value": result,
+		"value": h.service.Get(c.Param("key")),
 	})
 }
 
