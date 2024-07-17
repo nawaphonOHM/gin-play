@@ -1,5 +1,5 @@
 
-FROM golang:1.22
+FROM ubuntu:24.04
 
 LABEL maintainer="nawaphon"
 
