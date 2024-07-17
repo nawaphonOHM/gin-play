@@ -2,6 +2,7 @@ package main
 
 import (
 	"gin-play/handlers/cache_test"
+	handler_database_test "gin-play/handlers/database_test"
 	"gin-play/handlers/hello_world"
 	service_cache_test "gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
@@ -36,6 +37,8 @@ func main() {
 	helloWorldHandler := handler_hello_world.NewHelloWorldHandler()
 	cacheTestHandler := handler_cache_test.NewCacheTestHandler(cacheTestService)
 
+	dbTestHandler := handler_database_test.NewDatabaseTestHandlerImplementation()
+
 	root := ginDefault.Group("/")
 	{
 		root.GET("/hello-world", helloWorldHandler.MainHandler)
@@ -45,6 +48,11 @@ func main() {
 	{
 		cache.GET("/hello-world/:key", cacheTestHandler.Get)
 		cache.POST("/hello-world", cacheTestHandler.Set)
+	}
+
+	db := ginDefault.Group("/db")
+	{
+		db.GET("/hello-world", dbTestHandler.Get)
 	}
 
 	if port, isSet := os.LookupEnv("PORT"); isSet {
