@@ -1,17 +1,20 @@
 package cache_test
 
-import "github.com/redis/go-redis/v9"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
+)
 
 type CacheTestHandlerImplementation struct {
 	cache *redis.Client
 }
 
-func (c *CacheTestHandlerImplementation) Get(key string) (string, error) {
+func (h *CacheTestHandlerImplementation) Get(c *gin.Context) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (c *CacheTestHandlerImplementation) Set(key string, value string) (bool, error) {
+func (h *CacheTestHandlerImplementation) Set(c *gin.Context) {
 	//TODO implement me
 	panic("implement me")
 }

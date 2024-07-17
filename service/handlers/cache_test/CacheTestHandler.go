@@ -1,6 +1,8 @@
 package cache_test
 
+import "github.com/gin-gonic/gin"
+
 type CacheTestHandler interface {
-	Get(key string) (string, error)
-	Set(key string, value string) (bool, error)
+	Get(c *gin.Context)
+	Set(c *gin.Context)
 }
