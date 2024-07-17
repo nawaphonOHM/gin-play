@@ -38,6 +38,12 @@ func main() {
 		ginDefault.GET("/hello-world", helloWorldHandler.MainHandler)
 	}
 
+	ginDefault.Group("/cache")
+	{
+		ginDefault.GET("/hello-world/:key", cacheTestHandler.Get)
+		ginDefault.POST("/hello-world", cacheTestHandler.Set)
+	}
+
 	if port, isSet := os.LookupEnv("PORT"); isSet {
 		err := ginDefault.Run(strings.Join([]string{":", port}, ""))
 		if err != nil {
