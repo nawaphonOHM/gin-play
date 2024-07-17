@@ -6,3 +6,8 @@ type CacheTestHandler interface {
 	Get(c *gin.Context)
 	Set(c *gin.Context)
 }
+
+type SaveCache struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
