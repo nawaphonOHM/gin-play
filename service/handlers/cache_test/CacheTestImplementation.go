@@ -1,4 +1,4 @@
-package cache_test
+package handler_cache_test
 
 import (
 	"gin-play/services/cache_test"

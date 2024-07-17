@@ -1,4 +1,4 @@
-package cache_test
+package handler_cache_test
 
 import "github.com/gin-gonic/gin"
 

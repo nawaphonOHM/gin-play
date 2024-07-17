@@ -1,4 +1,4 @@
-package hello_world
+package handler_hello_world
 
 import (
 	"github.com/gin-gonic/gin"
