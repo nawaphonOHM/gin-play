@@ -10,3 +10,5 @@ services:
     image: nawaphon2539/golang:gin-play
     ports:
       - "1002:8080"
+    env_file:
+      - ./service/config.env
