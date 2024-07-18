@@ -1,9 +1,9 @@
 package main
 
 import (
-	"gin-play/handlers/cache_test"
+	handler_cache_test "gin-play/handlers/cache_test"
 	handler_database_test "gin-play/handlers/database_test"
-	"gin-play/handlers/hello_world"
+	handler_hello_world "gin-play/handlers/hello_world"
 	service_cache_test "gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
