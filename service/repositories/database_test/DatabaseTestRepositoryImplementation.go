@@ -6,7 +6,7 @@ type DatabaseTestRepositoryImplementation struct {
 	databaseWrapper *sqlx.DB
 }
 
-func (d DatabaseTestRepositoryImplementation) GetData() *Response {
+func (r *DatabaseTestRepositoryImplementation) GetData() *Response {
 	//TODO implement me
 	panic("implement me")
 }
