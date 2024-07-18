@@ -7,8 +7,12 @@ type DatabaseTestServiceImplementation struct {
 }
 
 func (s *DatabaseTestServiceImplementation) GetData() *Response {
-	//TODO implement me
-	panic("implement me")
+	response := s.repository.GetData()
+
+	return &Response{
+		Headers: response.Headers,
+		Data:    response.Data,
+	}
 }
 
 func NewDatabaseTestServiceImplementation(repository repository_database_test.DatabaseTestRepository) DatabaseTestService {
