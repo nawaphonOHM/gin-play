@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	handler_cache_test "gin-play/handlers/cache_test"
 	handler_database_test "gin-play/handlers/database_test"
 	handler_hello_world "gin-play/handlers/hello_world"
 	service_cache_test "gin-play/services/cache_test"
 	"github.com/gin-gonic/gin"
+	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
 	"log"
 	"os"
@@ -13,6 +15,11 @@ import (
 )
 
 func main() {
+
+	db, err := sqlx.Connect("postgres", fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "postgres", "test", "localhost", "5432", "public"))
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	redisConfig := &redis.Options{
 		Addr:     "localhost:6379",
