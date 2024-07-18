@@ -5,7 +5,9 @@ import (
 	handler_cache_test "gin-play/handlers/cache_test"
 	handler_database_test "gin-play/handlers/database_test"
 	handler_hello_world "gin-play/handlers/hello_world"
+	repository_database_test "gin-play/repositories/database_test"
 	service_cache_test "gin-play/services/cache_test"
+	service_database_test "gin-play/services/database_test"
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
@@ -39,12 +41,14 @@ func main() {
 
 	ginDefault := gin.Default()
 
+	dbTestRepository := repository_database_test.NewDatabaseTestRepositoryImplementation(db)
+
 	cacheTestService := service_cache_test.NewCacheTestServiceImplementation(redisClient)
+	dbTestService := service_database_test.NewDatabaseTestServiceImplementation(dbTestRepository)
 
 	helloWorldHandler := handler_hello_world.NewHelloWorldHandler()
 	cacheTestHandler := handler_cache_test.NewCacheTestHandler(cacheTestService)
-
-	dbTestHandler := handler_database_test.NewDatabaseTestHandlerImplementation()
+	dbTestHandler := handler_database_test.NewDatabaseTestHandlerImplementation(dbTestService)
 
 	root := ginDefault.Group("/")
 	{
