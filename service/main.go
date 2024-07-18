@@ -57,9 +57,9 @@ func main() {
 		cache.POST("/hello-world", cacheTestHandler.Set)
 	}
 
-	db := ginDefault.Group("/db")
+	dbPath := ginDefault.Group("/db")
 	{
-		db.GET("/hello-world", dbTestHandler.Get)
+		dbPath.GET("/hello-world", dbTestHandler.Get)
 	}
 
 	if port, isSet := os.LookupEnv("PORT"); isSet {
