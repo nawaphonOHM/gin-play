@@ -1,6 +1,9 @@
 package service_database_test
 
+import repository_database_test "gin-play/repositories/database_test"
+
 type DatabaseTestServiceImplementation struct {
+	repository repository_database_test.DatabaseTestRepository
 }
 
 func (s *DatabaseTestServiceImplementation) GetData() *Response {
@@ -8,6 +11,6 @@ func (s *DatabaseTestServiceImplementation) GetData() *Response {
 	panic("implement me")
 }
 
-func NewDatabaseTestServiceImplementation() DatabaseTestService {
-	return &DatabaseTestServiceImplementation{}
+func NewDatabaseTestServiceImplementation(repository repository_database_test.DatabaseTestRepository) DatabaseTestService {
+	return &DatabaseTestServiceImplementation{repository: repository}
 }
