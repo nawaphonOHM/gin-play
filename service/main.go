@@ -63,15 +63,15 @@ func main() {
 	}
 
 	if port, isSet := os.LookupEnv("PORT"); isSet {
-		err := ginDefault.Run(strings.Join([]string{":", port}, ""))
-		if err != nil {
+		errGin := ginDefault.Run(strings.Join([]string{":", port}, ""))
+		if errGin != nil {
 			panic("Unable to start server")
 		}
 
 	} else {
 		log.Println("Port hasn't been set; Use default PORT = 8080")
-		err := ginDefault.Run(strings.Join([]string{":", "8080"}, ""))
-		if err != nil {
+		errGin := ginDefault.Run(strings.Join([]string{":", "8080"}, ""))
+		if errGin != nil {
 			panic("Unable to start server")
 		}
 	}
