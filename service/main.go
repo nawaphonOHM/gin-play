@@ -16,12 +16,52 @@ import (
 	"github.com/redis/go-redis/v9"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func main() {
+	dbUrl := ""
+	dbPort := 0
+	username := ""
+	password := ""
 
-	db, err := sqlx.Connect("postgres", fmt.Sprintf("postgres://%s:%s@%s:%s/%s", "postgres", "test", "localhost", "5432", "public"))
+	databaseName := ""
+
+	if url, has := os.LookupEnv("DATABASE_URL"); !has {
+		panic("Require DATABASE_URL")
+	} else {
+		dbUrl = url
+	}
+
+	if value, has := os.LookupEnv("DB_USERNAME"); has {
+		username = value
+	} else {
+		panic("Require DB_USERNAME")
+	}
+
+	if value, has := os.LookupEnv("DB_PASSWORD"); has {
+		password = value
+	} else {
+		panic("Require DB_PASSWORD")
+	}
+
+	if value, has := os.LookupEnv("DATABASE_NAME"); has {
+		databaseName = value
+	} else {
+		panic("Require DATABASE_NAME")
+	}
+
+	if value, has := os.LookupEnv("DATABASE_PORT"); has {
+		dbPortAsNumber, err := strconv.Atoi(value)
+		if err != nil {
+			panic("Database port is not a number")
+		} else {
+			dbPort = dbPortAsNumber
+		}
+	}
+
+	db, err := sqlx.Connect("postgres", fmt.Sprintf("postgres://%s:%s@%s:%d/%s", username, password, dbUrl, dbPort, databaseName))
 	if err != nil {
 		log.Fatalln(err)
 	}
