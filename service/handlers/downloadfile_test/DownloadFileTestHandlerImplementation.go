@@ -10,6 +10,12 @@ type DownloadFileTestHandlerImplementation struct {
 	mainService service_downloadfile_test.DownloadFileTestService
 }
 
+// Get @Summary Test file download
+// @Description Download a test file
+// @ID get-download-test-file
+// @Produce octet-stream
+// @Success 200 {object} model.File
+// @Router /download/hello-world [get]
 func (h *DownloadFileTestHandlerImplementation) Get(c *gin.Context) {
 	file, err := h.mainService.GetFile()
 	if err != nil {
