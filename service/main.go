@@ -61,7 +61,7 @@ func main() {
 		}
 	}
 
-	db, err := sqlx.Connect("postgres", fmt.Sprintf("postgres://%s:%s@%s:%d/%s", username, password, dbUrl, dbPort, databaseName))
+	db, err := sqlx.Connect("postgres", fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", username, password, dbUrl, dbPort, databaseName))
 	if err != nil {
 		log.Fatalln(err)
 	}
