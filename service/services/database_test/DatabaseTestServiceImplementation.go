@@ -1,13 +1,21 @@
 package service_database_test
 
-import repository_database_test "gin-play/repositories/database_test"
+import (
+	repository_database_test "gin-play/repositories/database_test"
+	"log"
+)
 
 type DatabaseTestServiceImplementation struct {
 	repository repository_database_test.DatabaseTestRepository
 }
 
 func (s *DatabaseTestServiceImplementation) GetData() *Response {
-	response := s.repository.GetData()
+	response, err := s.repository.GetData()
+
+	if err != nil {
+		log.Fatal(err)
+		return &Response{}
+	}
 
 	return &Response{
 		Headers: response.Headers,
