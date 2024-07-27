@@ -52,6 +52,13 @@ paths:
             type: object
       tags:
       - CacheTestHandler
+  /download/hello-world:
+    get:
+      description: Download a test file
+      operationId: get-download-test-file
+      produces:
+      - application/octet-stream
+      responses: {}
   /hello-world:
     get:
       consumes:

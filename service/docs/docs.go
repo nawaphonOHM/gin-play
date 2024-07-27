@@ -81,6 +81,16 @@ const docTemplate = `{
                 }
             }
         },
+        "/download/hello-world": {
+            "get": {
+                "description": "Download a test file",
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "operationId": "get-download-test-file",
+                "responses": {}
+            }
+        },
         "/hello-world": {
             "get": {
                 "description": "Get Hello World Message",
