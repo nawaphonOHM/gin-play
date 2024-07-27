@@ -9,7 +9,7 @@ type DatabaseTestRepositoryImplementation struct {
 	databaseWrapper *sqlx.DB
 }
 
-func (r *DatabaseTestRepositoryImplementation) GetData() *Response {
+func (r *DatabaseTestRepositoryImplementation) GetData() (*Response, error) {
 	query := "SELECT * FROM \"User\""
 
 	rows, err := r.databaseWrapper.Query(query)
