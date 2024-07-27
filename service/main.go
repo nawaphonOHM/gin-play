@@ -12,6 +12,7 @@ import (
 	service_downloadfile_test "gin-play/services/downloadfile_test"
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 	"github.com/redis/go-redis/v9"
 	"log"
 	"os"
