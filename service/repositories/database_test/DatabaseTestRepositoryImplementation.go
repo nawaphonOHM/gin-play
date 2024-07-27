@@ -14,10 +14,16 @@ func (r *DatabaseTestRepositoryImplementation) GetData() (*Response, error) {
 
 	rows, err := r.databaseWrapper.Query(query)
 	if err != nil {
-		return nil
+		return nil, err
 	}
 
 	response := new(Response)
+
+	response.Headers, err = rows.Columns()
+
+	if err != nil {
+		return nil, err
+	}
 
 	for rows.Next() {
 		row := make([]string, 0)
@@ -28,7 +34,7 @@ func (r *DatabaseTestRepositoryImplementation) GetData() (*Response, error) {
 		response.Data = append(response.Data, row)
 	}
 
-	return response
+	return response, nil
 }
 
 func NewDatabaseTestRepositoryImplementation(db *sqlx.DB) DatabaseTestRepository {
