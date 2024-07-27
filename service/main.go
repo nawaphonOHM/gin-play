@@ -34,13 +34,13 @@ func main() {
 		dbUrl = url
 	}
 
-	if value, has := os.LookupEnv("DB_USERNAME"); has {
+	if value, has := os.LookupEnv("DATABASE_USERNAME"); has {
 		username = value
 	} else {
 		panic("Require DB_USERNAME")
 	}
 
-	if value, has := os.LookupEnv("DB_PASSWORD"); has {
+	if value, has := os.LookupEnv("DATABASE_PASSWORD"); has {
 		password = value
 	} else {
 		panic("Require DB_PASSWORD")
